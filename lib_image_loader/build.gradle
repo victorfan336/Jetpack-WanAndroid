@@ -1,14 +1,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
-
+    namespace "com.win.lib_image_loader"
+    compileSdkVersion rootProject.android.targetSdkVersion
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -22,13 +20,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
 
 }
 
 dependencies {
     
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compileOnly rootProject.depsLibs.appcompat
     compileOnly rootProject.depsLibs.coreKtx
 

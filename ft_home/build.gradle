@@ -1,13 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.android.compileSdkVersion
-    buildToolsVersion rootProject.android.buildToolsVersion
 
-
+    namespace "com.win.ft_home"
+    compileSdkVersion rootProject.android.targetSdkVersion
     defaultConfig {
         minSdkVersion rootProject.android.minSdkVersion
         targetSdkVersion rootProject.android.targetSdkVersion
@@ -26,11 +24,15 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     dataBinding {
         enabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
 }
@@ -38,7 +40,7 @@ android {
 dependencies {
 
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compileOnly rootProject.depsLibs.appcompat
     compileOnly rootProject.depsLibs.coreKtx
 
